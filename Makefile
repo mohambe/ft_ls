@@ -6,12 +6,12 @@
 #    By: msambo <msambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/03 17:57:18 by msambo            #+#    #+#              #
-#    Updated: 2020/01/02 17:33:39 by msambo           ###   ########.fr        #
+#    Updated: 2020/01/07 16:55:11 by msambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-SRCS = main.c util.c
+SRCS = main.c util.c dir.c timingOut.c reverse.c long.c util2.c 
 OBJECTS = $(SRCS: .c=.o)
 LIBS = ./ft_libft/libft.a
 

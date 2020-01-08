@@ -24,26 +24,75 @@ int		set_flags(char **str, t_info *flags)
 		if (str[i][0] == '-')
 		{
 			if (ft_strchr(str[i], 'l'))
-				{
-                flags->flag_l = 1;
-                ft_putendl(" ");
-                ft_putnbr(flags->flag_l);
-                ft_putendl(" ");}
+				flags->flag_l = 1;
 			if (ft_strchr(str[i], 'a'))
-				{flags->flag_a = 1;
-                ft_putnbr(flags->flag_a);
-                ft_putendl(" ");}
+				flags->flag_a = 1;
 			if (ft_strchr(str[i], 'r'))
-				{flags->flag_r = 1;
-                ft_putnbr(flags->flag_r);}
+				flags->flag_r = 1;
 			if (ft_strchr(str[i], 't'))
-				{flags->flag_time = 1;
-                ft_putendl("\n t");}
+				flags->flag_time = 1;
 			if (ft_strchr(str[i], 'R'))
 				flags->flag_R = 1;
 			ft_flag_active(flags, str[i]);
 		}
 		i++;
 	}
+	str = NULL;
 	return (1);
+}
+
+void	ft_protector(char **new, char *dir)
+{
+	int i;
+
+	i = 0;
+	if (errno == 2)
+	{
+		ft_putstr("ft_ls: ");
+		ft_putstr(dir);
+		ft_putendl(": No such file or directory");
+		exit(0);
+	}
+	if (errno == 13)
+	{
+		ft_putstr("ft_ls: ");
+		ft_putstr(dir);
+		ft_putendl(": Permission denied");
+		exit(0);
+	}
+	if (errno == 20)
+	{
+		new[0] = ft_strdup(dir);
+		new[1] = NULL;
+	}
+}
+
+
+void	ft_sort(char **new)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	while (new[i] != NULL)
+	{
+		j = i + 1;
+		while (new[j] != NULL)
+		{
+			if (ft_strcmp(new[i], new[j]) > 0)
+			{
+				str = ft_strdup(new[i]);
+				tmp = new[i];
+				new[i] = ft_strdup(new[j]);
+				ft_strdel(&tmp);
+				tmp = new[j];
+				new[j] = str;
+				ft_strdel(&tmp);
+			}
+			j++;
+		}
+		i++;
+	}
 }
