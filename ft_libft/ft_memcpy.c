@@ -24,7 +24,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	while (i < n)
 	{
 		dst1[i] = src1[i];
-		if (src1 == '\0')
+		if (src1[i] == '\0')
 		{
 			dst1[i] = '\0';
 			break ;

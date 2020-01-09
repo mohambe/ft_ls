@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = ft_ls
-SRCS = main.c util.c dir.c timingOut.c reverse.c long.c util2.c 
+SRCS = main.c util.c dir.c reverse.c long.c util2.c timingOut.c 
 OBJECTS = $(SRCS: .c=.o)
 LIBS = ./ft_libft/libft.a
 

@@ -25,7 +25,7 @@ void	handle_date(struct stat s)
 {
 	char	**date;
 
-	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
+	date = ft_strsplit(ctime(&s.st_mtim.tv_sec), ' ');
 	ft_putstr(date[1]);
 	ft_putstr(" ");
 	!date[2][1] ? ft_putchar(' ') : 0;

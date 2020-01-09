@@ -24,7 +24,7 @@ void	ft_swap(char **new, int a, int b)
 	new[b] = ft_strdup(temp);
 	ft_strdel(&temp);
 }
-
+/*
 void	ft_time_sort_struct(char *dir, char **new, int i, int j)
 {
 	struct stat a;
@@ -65,4 +65,4 @@ char	**ft_time_sort(char **new, char *dir)
 		i++;
 	}
 	return (new);
-}
+}*/

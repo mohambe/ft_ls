@@ -20,8 +20,8 @@ int	count(char *dir)
 void	ft_content_flags(char **new, char **dir, t_info *flag)
 {
 	ft_sort(new);
-	if (flag->flag_time == 1)
-		new = ft_time_sort(new, *dir);
+/*	if (flag->flag_time == 1)
+		new = ft_time_sort(new, *dir);*/
 	if (flag->flag_r == 1)
 		new = ft_reverse(new);
 }
@@ -66,6 +66,7 @@ char	**ft_content(char **new, t_info *flag, char **dir)
 		ft_content_while(new, flag, dir);
 	}
 	ft_content_flags(new, dir, flag);
+	closedir(currentdir);
 	return (new);
 }
 

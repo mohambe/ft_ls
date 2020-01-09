@@ -65,6 +65,7 @@ void do_something(char **str, t_info *flags)
         ft_putendl(constent[i++]);
         j++;
     }
+	word_destory(constent);
 }
 int wordLEN(char **words){
     int i = 0;
@@ -118,17 +119,20 @@ int     main(int ac, char **av)
         set_flags(av, flags);
         do_something(&input[j],flags);
     }
-     i =0;
+   //  i =0;
     
     // while(input[i] != NULL)
     // {
         ft_strdel(&input[0]);
+	free(input);
+	input = NULL;
+
         // free(input[i]);
     //     i++;
     // }
     free(flags);
     flags = NULL;
-
-    sleep(200);
+/*
+    sleep(200);*/
     return 0;
 }
