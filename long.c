@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   long.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:41:55 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 18:10:08 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
  #include "ft_ls.h"
 
 void	ft_rights(struct stat mode)
@@ -9,13 +21,19 @@ void	ft_rights(struct stat mode)
 		return ;
 	i[0] = (S_IRUSR & mode.st_mode) ? 'r' : '-';
 	i[1] = (S_IWUSR & mode.st_mode) ? 'w' : '-';
-	i[2] = (S_IXUSR & mode.st_mode) ? 'x' : '-';
+	if (S_ISUID & mode.st_mode)
+		i[2] = (S_ISUID & mode.st_mode) ? 's' : '-';
+	else
+		i[2] = (S_IXUSR & mode.st_mode) ? 'x' : '-';
 	i[3] = (S_IRGRP & mode.st_mode) ? 'r' : '-';
 	i[4] = (S_IWGRP & mode.st_mode) ? 'w' : '-';
 	i[5] = (S_IXGRP & mode.st_mode) ? 'x' : '-';
 	i[6] = (S_IROTH & mode.st_mode) ? 'r' : '-';
 	i[7] = (S_IWOTH & mode.st_mode) ? 'w' : '-';
-	i[8] = (S_IXOTH & mode.st_mode) ? 'x' : '-';
+	if (S_ISVTX & mode.st_mode)
+		i[8] = (S_ISVTX & mode.st_mode) ? 't' : '-';
+	else
+		i[8] = (S_IXOTH & mode.st_mode) ? 'x' : '-';
 	i[9] = '\0';
 	ft_putstr(i);
 	ft_strdel(&i);
@@ -25,7 +43,7 @@ void	handle_date(struct stat s)
 {
 	char	**date;
 
-	date = ft_strsplit(ctime(&s.st_mtim.tv_sec), ' ');
+	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
 	ft_putstr(date[1]);
 	ft_putstr(" ");
 	!date[2][1] ? ft_putchar(' ') : 0;
@@ -34,7 +52,6 @@ void	handle_date(struct stat s)
 	date[3][5] = '\0';
 	date[4][4] = '\0';
 	ft_putstr(date[3]);
-	// ft_delete(date);
 	word_destory(date);
 }
 

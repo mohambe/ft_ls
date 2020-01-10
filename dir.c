@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dir.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:41:37 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 12:42:57 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int	count(char *dir)
@@ -20,8 +32,8 @@ int	count(char *dir)
 void	ft_content_flags(char **new, char **dir, t_info *flag)
 {
 	ft_sort(new);
-/*	if (flag->flag_time == 1)
-		new = ft_time_sort(new, *dir);*/
+	if (flag->flag_time == 1)
+		new = ft_time_sort(new, *dir);
 	if (flag->flag_r == 1)
 		new = ft_reverse(new);
 }
@@ -66,7 +78,15 @@ char	**ft_content(char **new, t_info *flag, char **dir)
 		ft_content_while(new, flag, dir);
 	}
 	ft_content_flags(new, dir, flag);
-	closedir(currentdir);
+	if(flag->flag_l == 1)
+	{
+		ft_file_info(new,*dir);
+	}
+	if(directory(*dir) == 0)
+		ft_putendl("");
+	else
+		closedir(currentdir);
+	
 	return (new);
 }
 

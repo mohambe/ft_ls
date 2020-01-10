@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:41:46 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 12:42:55 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 #define FT_LS_H
 
@@ -47,5 +59,6 @@ int				ft_count_nbr(int i);
 blkcnt_t 		blockcount(char **directory);
 void 	 		blockcount_result(blkcnt_t count);
 void			word_destory(char **ptr);
+int				directory(const char *location);
 
 #endif

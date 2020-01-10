@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:41:22 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 18:15:08 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 t_info *ft_reset(void)
@@ -39,16 +51,18 @@ char **ft_deciper(char **str, int ac)
 
 void do_something(char **str, t_info *flags)
 {
-    int i;
-    int j;
-    char **constent;
+    int     i;
+    int     j;
+    char    **constent;
+    DIR		*currentdir;
 
     constent = NULL;
     i = 0;
     j = 0;
     
-    while(str[j] && flags->errors == 0 && j < (256 * 256))
+    while(str[j] && flags->errors == 0)
     {
+        ft_putendl(*str);
         if(Acounter(str) > 1)
         {
             ft_putstr(str[j]);
@@ -57,10 +71,6 @@ void do_something(char **str, t_info *flags)
         constent = ft_content(constent,flags, &str[j]);
         i = 0;
 
-        if(flags->flag_l == 1)
-        {
-            ft_file_info(constent,str[j]);
-        }
         while (constent[i] != NULL && flags->flag_l == 0)
         ft_putendl(constent[i++]);
         j++;
@@ -82,32 +92,32 @@ int wordLEN(char **words){
 void	ft_no_argument(char **str, t_info *flag)
 {
 	int		i;
+    int     j;
 	char	**new;
 
 	i = 0;
+    j = 0;
 	new = NULL;
     if(*str == NULL)
         *str = ft_strdup(".");
     else
         ft_putstr(*str);
     new = ft_content(new, flag, str);
-	while (new[i] != NULL)
+	while (new[i] != NULL && flag->flag_l == 0)
     ft_putendl(new[i++]);
     word_destory(new);
 }
 
 int     main(int ac, char **av)
 {
-    char **input;   
-    t_info *flags;
+    char    **input;   
+    t_info  *flags;
+    int     j;
 
     input = NULL;    
     flags = ft_reset();
     input = ft_deciper(av, ac);
-    int i;
-    int j;
     
-    i = 0;
     j = 0;
     if (*input == NULL)
     {
@@ -119,20 +129,11 @@ int     main(int ac, char **av)
         set_flags(av, flags);
         do_something(&input[j],flags);
     }
-   //  i =0;
-    
-    // while(input[i] != NULL)
-    // {
-        ft_strdel(&input[0]);
+    ft_strdel(&input[0]);
 	free(input);
 	input = NULL;
-
-        // free(input[i]);
-    //     i++;
-    // }
     free(flags);
     flags = NULL;
-/*
-    sleep(200);*/
+sleep(10);
     return 0;
 }

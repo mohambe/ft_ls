@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:42:03 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 12:42:42 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 char	**ft_reversing(char **str, char **new)
@@ -28,7 +40,6 @@ char	**ft_reverse(char **new)
 		str[i++] = ft_strdup(new[j--]);
 	str[i] = NULL;
 	new = ft_reversing(str, new);
-	// ft_delete(str); delete later
 	word_destory(str);
 	return (new);
 }

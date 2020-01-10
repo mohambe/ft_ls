@@ -1,15 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   timingOut.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 12:42:09 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/10 12:42:40 by msambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 char	*ft_path(char *filename, char *dir)
 {
 	char *ret;
 	char *ptr;
+	int check;
+ 
+	check = ft_strequ(dir, filename);
+	if(check == 1)
+		dir = ".";
+	else
+	{
+		
+	}
 
 	ret = NULL;
 	ptr = NULL;
 	ptr = ft_strjoin(dir, "/");
 	ret = ft_strjoin(ptr, filename);
-	ft_strdel(&ptr);
+	ft_strdel(&ptr);	
 	return (ret);
 }
 
@@ -24,7 +45,7 @@ void	ft_swap(char **new, int a, int b)
 	new[b] = ft_strdup(temp);
 	ft_strdel(&temp);
 }
-/*
+
 void	ft_time_sort_struct(char *dir, char **new, int i, int j)
 {
 	struct stat a;
@@ -65,4 +86,4 @@ char	**ft_time_sort(char **new, char *dir)
 		i++;
 	}
 	return (new);
-}*/
+}
