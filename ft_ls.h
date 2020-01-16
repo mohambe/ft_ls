@@ -6,7 +6,7 @@
 /*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 12:41:46 by msambo            #+#    #+#             */
-/*   Updated: 2020/01/10 12:42:55 by msambo           ###   ########.fr       */
+/*   Updated: 2020/01/16 09:12:06 by msambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,9 @@ blkcnt_t 		blockcount(char **directory);
 void 	 		blockcount_result(blkcnt_t count);
 void			word_destory(char **ptr);
 int				directory(const char *location);
+void			checker(char **str, t_info *flags);
+void			ft_content_maker(char **new, t_info *flag, char **dir, char **content);
+void			ft_content_reader(char **new, t_info *flag, char **content, int record);
+int     		recorded(char **str);
 
 #endif

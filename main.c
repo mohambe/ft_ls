@@ -6,7 +6,7 @@
 /*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 12:41:22 by msambo            #+#    #+#             */
-/*   Updated: 2020/01/10 18:15:08 by msambo           ###   ########.fr       */
+/*   Updated: 2020/01/16 09:13:17 by msambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,34 @@ void do_something(char **str, t_info *flags)
     int     i;
     int     j;
     char    **constent;
-    DIR		*currentdir;
-
+    char    **just_constent;
+    
     constent = NULL;
+    just_constent = NULL;
     i = 0;
     j = 0;
-    
-    while(str[j] && flags->errors == 0)
-    {
-        ft_putendl(*str);
-        if(Acounter(str) > 1)
+    i =recorded(str);
+    if (i != 0)
+        checker(str,flags);
+    else {
+        while (str[j] && flags->errors == 0)
         {
-            ft_putstr(str[j]);
-            ft_putendl(":"); 
+            // ft_putendl(*str);
+            if (Acounter(str) > 1)
+            {
+                ft_putstr(str[j]);
+                ft_putendl(":"); 
+            }
+            constent = ft_content(constent,flags, &str[j]);
+            i = 0;
+            while (constent[i] != NULL && flags->flag_l == 0)
+                ft_putendl(constent[i++]);
+            j++;
         }
-        constent = ft_content(constent,flags, &str[j]);
-        i = 0;
-
-        while (constent[i] != NULL && flags->flag_l == 0)
-        ft_putendl(constent[i++]);
-        j++;
+        word_destory(constent);
     }
-	word_destory(constent);
 }
+
 int wordLEN(char **words){
     int i = 0;
 
@@ -117,7 +122,6 @@ int     main(int ac, char **av)
     input = NULL;    
     flags = ft_reset();
     input = ft_deciper(av, ac);
-    
     j = 0;
     if (*input == NULL)
     {
@@ -127,13 +131,13 @@ int     main(int ac, char **av)
     else if(ac > 1 && *input != NULL)
     {
         set_flags(av, flags);
-        do_something(&input[j],flags);
+        do_something(input,flags);
     }
     ft_strdel(&input[0]);
 	free(input);
 	input = NULL;
     free(flags);
     flags = NULL;
-sleep(10);
+// sleep(10);
     return 0;
 }

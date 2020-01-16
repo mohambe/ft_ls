@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   util4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 12:42:03 by msambo            #+#    #+#             */
-/*   Updated: 2020/01/15 09:28:57 by msambo           ###   ########.fr       */
+/*   Created: 2020/01/16 08:55:00 by msambo            #+#    #+#             */
+/*   Updated: 2020/01/16 09:14:51 by msambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	**ft_reversing(char **str, char **new)
+int     recorded(char **str)
 {
-	int	i;
+    int record;
+    int i;
 
-	i = 0;
-	while (str[i])
+    i = 0;
+    record = 0;
+    
+    while (str[i] != NULL)
 	{
-		ft_strdel(&new[i]);
-		new[i] = ft_strdup(str[i]);
+		if (directory(str[i]) == 0)
+			record++;
+		else
+			 ft_putstr("");
 		i++;
 	}
-	return (new);
-}
-
-char	**ft_reverse(char **new)
-{
-	char	**str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	j = Acounter(new) - 1;
-	str = (char **)malloc(sizeof(char *) * (j + 2));
-	while (j >= 0)
-		str[i++] = ft_strdup(new[j--]);
-	str[i] = NULL;
-	new = ft_reversing(str, new);
-	word_destory(str);
-	return (new);
+    return record;
 }

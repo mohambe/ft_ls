@@ -6,7 +6,7 @@
 /*   By: msambo <msambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 12:41:37 by msambo            #+#    #+#             */
-/*   Updated: 2020/01/10 12:42:57 by msambo           ###   ########.fr       */
+/*   Updated: 2020/01/16 09:14:17 by msambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	**ft_content(char **new, t_info *flag, char **dir)
 		ft_putendl("");
 	else
 		closedir(currentdir);
-	
 	return (new);
 }
 
